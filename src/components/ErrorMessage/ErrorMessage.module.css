@@ -1,0 +1,32 @@
+.error_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* фиксированная ширина контейнера */
+  height: 50px; /* высота контейнера */
+  overflow: hidden;
+  background-color: #f8d7da; /* фон для контейнера, чтобы выделить ошибку */
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin: auto;
+}
+
+.error_message {
+  color: red;
+  font-size: 1.2em;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(40, end) forwards;
+  text-align: center;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  } /* завершение печати текста */
+}

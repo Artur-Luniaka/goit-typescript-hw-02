@@ -1,0 +1,50 @@
+.form {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.input {
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 250px;
+  outline: none;
+  transition: border-color 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  &::placeholder {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: lightgrey;
+  }
+  &:hover,
+  &:focus {
+    border-color: lightcoral;
+  }
+}
+
+.button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  gap: 5px;
+  outline: none;
+  border: none;
+  background-color: lightcoral;
+  color: white;
+  cursor: pointer;
+  transition: background-color 1.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+    outline 1.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+    color 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  &:hover,
+  &:focus {
+    background-color: white;
+    outline: 1px solid lightcoral;
+    color: lightcoral;
+  }
+}
