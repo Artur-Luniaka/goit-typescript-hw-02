@@ -11,18 +11,10 @@ interface Images {
   likes: number;
 }
 
-interface ApiRequest {
-  query: string;
-  content_filter: string;
-  orientation: string;
-  page: number;
-  per_page: number;
-}
-
 export const fetchImages = async (
   request: string,
   currentPage: number
-): Promise<{ results: Images[]; total: number }> => {
+): Promise<{ results: Images[]; total: number }> | never => {
   try {
     const response = await axios.get(
       `?client_id=${ACCESS_KEY}&query=${request}&content_filter=high&orientation=landscape&page=${currentPage}&per_page=15`

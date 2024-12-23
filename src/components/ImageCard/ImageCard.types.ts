@@ -1,4 +1,4 @@
 export interface CardImageProps {
-  gallerySize?: string;
+  gallerySize: string;
   descr: string;
 }
