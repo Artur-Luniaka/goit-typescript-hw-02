@@ -3,27 +3,32 @@ import "./App.css";
 import { fetchImages } from "./assets/api";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import toast, { Toaster } from "react-hot-toast";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { ImagesProps } from "./App.types";
 
 const App = () => {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState();
-  const [page, setPage] = useState(1);
-  const [totalImages, setTotalImages] = useState(0);
-  const [visibleBtn, setVisibleBtn] = useState(false);
-  const [loader, setLoader] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
-  const [modalImage, setModalImage] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState<ImagesProps[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [totalImages, setTotalImages] = useState<number>(0);
+  const [visibleBtn, setVisibleBtn] = useState<boolean>(false);
+  const [loader, setLoader] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<ImagesProps | null>(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const searchQuery = e.target.elements.searchInput.value.trim();
+    const form = e.target as HTMLFormElement;
+    const searchQuery: string = (
+      form.elements.namedItem("searchInput") as HTMLInputElement
+    ).value.trim();
+
     if (searchQuery === "") {
       toast.error("Please enter your keyword to search field...", {
         style: {
@@ -43,7 +48,7 @@ const App = () => {
       setImages(results);
       setTotalImages(total);
       setVisibleBtn(results.length > 0 && results.length < total);
-      e.target.reset();
+      form.reset();
     } catch (error) {
       console.error(error);
       setVisibleBtn(false);
@@ -74,9 +79,9 @@ const App = () => {
     }
   };
 
-  const modalOpen = (id) => {
+  const modalOpen = (id: string) => {
     const findImage = images.find((image) => image.id === id);
-    setSelectedImage(findImage);
+    setSelectedImage(findImage ?? null);
   };
 
   useEffect(() => {
@@ -91,7 +96,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    const handleCloseModal = (e) => {
+    const handleCloseModal = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         modalClose();
       }

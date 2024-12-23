@@ -1,7 +1,8 @@
 import s from "./SearchBar.module.css";
 import { MdOutlineImageSearch } from "react-icons/md";
+import { SearchBarProps } from "./SearchBar.types";
 
-const SearchBar = ({ sendQuery }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ sendQuery }) => {
   return (
     <>
       <header>

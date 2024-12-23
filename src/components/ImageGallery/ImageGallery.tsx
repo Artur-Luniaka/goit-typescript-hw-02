@@ -1,7 +1,11 @@
+import { CardsGalleryProps } from "./ImageGallery.types";
 import ImageCard from "../ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ cards = [], openModal }) => {
+const ImageGallery: React.FC<CardsGalleryProps> = ({
+  cards = [],
+  openModal,
+}) => {
   return (
     <>
       <ul className={s.list}>

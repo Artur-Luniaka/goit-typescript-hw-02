@@ -2,9 +2,10 @@ import s from "./ImageModal.module.css";
 import { CgCloseR } from "react-icons/cg";
 import { BiLike } from "react-icons/bi";
 import Modal from "react-modal";
+import { ImageModalProps } from "./ImageModal.types";
 Modal.setAppElement("#root");
 
-const ImageModal = ({
+const ImageModal: React.FC<ImageModalProps> = ({
   isOpen,
   onRequestClose,
   selectedImage,
